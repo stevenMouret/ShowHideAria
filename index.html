@@ -2,123 +2,29 @@
 <html lang="fr">
 <head>
 	<meta charset="utf-8" />
-	<title>Show Hide Aria</title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script type="text/javascript">
-		/*
-		Show Hide Aria v1.1
-		jQuery Plugin that displays or hides content.
-		By Steven Mouret
-
-		Call JS :
-		$(".showHide").showHideAria({
-			textBtnClose: 		'En savoir plus',  En savoir plus, <img src="ouvert.png" alt="En savoir plus" />
-			textBtnOpen: 		'Fermer',  Fermer, <img src="fermer.png" alt="Fermer" />
-			btnPostion:			'bottom'  bottom, top
-		});
-
-		Structures examples HTML :
-		<ul class="showHide">
-			<li class="showHideArea">
-				<h2 class="showHideTitle">Titre</h2>
-				<div class="showHideContent">
-					<p>bla bla...</p>
-				</div>
-			</li>
-		</ul>
-		OR
-		<div class="showHide">
-			<div class="showHideArea">
-				<h2 class="showHideTitle">Titre</h2>
-				<div class="showHideContent">
-					<p>bla bla...</p>
-				</div>
-			</div>
-		</div>
-		OR other solutions...
-		This function is based on class names
-
-		*/
-		$.fn.showHideAria = function(options){
-			var defaults = {
-				textBtnClose: 		'En savoir plus', /* <img src="ouvert.png" alt="En savoir plus" /> */
-				textBtnOpen: 		'Fermer', /* <img src="fermer.png" alt="Fermer" /> */
-				btnPostion:			'bottom' /* bottom, top */
-			};
-			var options = $.extend(defaults, options);
-			var x=1;
-			this.each(function() {
-
-				var obj = $(this);
-				var myClass = obj.attr("class").split(' ')[0]+x;
-				obj.find(".showHideContent").eq(0).hide();
-
-				var i = 0;
-				obj.find(".showHideArea").eq(0).each(function(){
-
-					var myObj = $(this);
-
-					$(".showHideTitle:first", myObj).attr("id","t"+myClass+i+"label");
-					$(".showHideTitle:first", myObj).wrap('<div class="showHideWrapTitre">');
-					if (options.btnPostion == 'bottom') {
-						$(".showHideContent:first", myObj).after('<p class="buttonBlock"><button type="button" id="button'+ myClass + i + '" name="button' + myClass + i + '" aria-controls="t' + myClass + i + '" class="showHideMe close resetButton">'+options.textBtnClose+'</button></p>');
-					} else if (options.btnPostion == 'top') {
-						$(".showHideTitle:first", myObj).after('<p class="buttonBlock"><button type="button" id="button'+ myClass + i + '" name="button' + myClass + i + '" aria-controls="t' + myClass + i + '" class="showHideMe close resetButton">'+options.textBtnClose+'</button></p>');
-					}
-
-					$(".showHideContent:first", myObj).attr({
-						id:					"t"+myClass+i,
-						'aria-expanded':	"false",
-						tabindex:			"-1",
-						'aria-labelledby':	"t"+myClass+i+"label",
-						role:				"region"
-					});
-
-					i++;
-				});
-
-				obj.find("button.showHideMe").eq(0).click(function(){
-					var myElem = $(this);
-
-					var myContainer = myElem.parents(".showHideArea").find(".showHideContent").eq(0);
-
-					myContainer.slideToggle('slow', function(){
-						if(myContainer.attr("aria-expanded") === "false") {
-							myContainer.attr("aria-expanded","true");
-							myContainer.focus();
-							myElem.closest(".showHideArea").addClass("active");
-							myElem.removeClass("close");
-							myElem.addClass("open");
-							myElem.html(options.textBtnOpen);
-						} else {
-							myContainer.attr("aria-expanded","false");
-							myElem.closest(".showHideArea").removeClass("active");
-							myElem.removeClass("open");
-							myElem.addClass("close");
-							myElem.html(options.textBtnClose);
-						}
-					});
-				});
-			x++;
-
-			});
-		};
-
-		$(document).ready(function(){
-			$(".showHide").showHideAria({
-				textBtnClose: "En savoir plus"
-			});
-		});
-	</script>
+	<title>Show Hide Aria jQuery</title>
+	<style type="text/css">
+		@import url("showHideAriajQuery.css") all;
+	</style>
 </head>
 <body>
-	<div class="showHide">
-		<div class="showHideArea">
-			<h2 class="showHideTitle">Title</h2>
-			<div class="showHideContent">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A at autem est iste quisquam, reiciendis suscipit voluptate! Ad aliquam deleniti dolorem laborum sequi similique velit voluptatibus! Aliquid dignissimos ea earum eos facere iusto magnam officiis praesentium provident, quae quisquam, ratione recusandae repudiandae sint temporibus. Quia.</p>
-			</div>
+	<div class="showHideAria">
+		<div class="showHideTitle">
+			<h2 class="title">Title 1</h2>
+		</div>
+		<div class="showHideContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A at autem est iste quisquam, reiciendis suscipit voluptate! Ad aliquam deleniti dolorem laborum sequi similique velit voluptatibus! Aliquid dignissimos ea earum eos facere iusto magnam officiis praesentium provident, quae quisquam, ratione recusandae repudiandae sint temporibus. Quia.</p>
 		</div>
 	</div>
+	<div class="showHideAria">
+		<div class="showHideTitle">
+			<h2 class="title">Title 2</h2>
+		</div>
+		<div class="showHideContent">
+			<p>Amet ipsa minima nam officia vel voluptates? A accusamus, alias assumenda autem cum cumque distinctio dolorem doloribus dolorum eligendi error ex excepturi expedita facilis magni modi nemo odit pariatur quisquam quod quos reiciendis, repellendus rerum suscipit tenetur unde veniam voluptatibus. Ducimus, exercitationem?</p>
+		</div>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="showHideAriajQuery.js"></script>
 </body>
 </html>

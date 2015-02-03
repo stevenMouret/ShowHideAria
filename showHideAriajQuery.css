@@ -1,0 +1,6 @@
+.showHideAria .showHideContent {
+  display: none;
+}
+.showHideAria.open .showHideContent {
+  display: block;
+}
