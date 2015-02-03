@@ -1,4 +1,4 @@
-# showHideAria.js
+# showHideAriajQuery.js
 
 jQuery plugin. Accessible collapsible content with ARIA
 
