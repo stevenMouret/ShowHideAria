@@ -22,13 +22,19 @@ HTML structure
 
 ```html
 <div class="showHideAria">
-	<div class="showHideTitle">
-		<h2 class="title">Title</h2>
-	</div>
+	<h2 class="showHideTitle">Title</h2>
 	<div class="showHideContent">
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque consectetur deserunt dolor enim excepturi expedita in incidunt ipsum, iste iusto modi mollitia ratione veniam voluptatum.</p>
 	</div>
 </div>
+```
+
+Call in Javascript
+
+```js
+$(document).ready(function(){
+	$(".showHideAria").showHideAria();
+});
 ```
 
 

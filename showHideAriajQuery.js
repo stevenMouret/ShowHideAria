@@ -5,22 +5,19 @@
 
 $.fn.showHideAria = function(){
 	this.each(function(index) {
-		var obj = $(this);
+		var obj = $(this),
+		showHideTitle = $('.showHideTitle', obj),
+		showHideContent = $('.showHideContent', obj);
 
 		// Add button with aria attributes
-		var showHideTitleContent = $('.showHideTitle', obj).html(),
-			newShowHideTitleContent = '<button type="button" aria-expanded="false" aria-controls="showHide-' + index + '">' + showHideTitleContent + '</button>';
-
-		$('.showHideTitle', obj)[0].innerHTML = newShowHideTitleContent;
+		showHideTitle.wrapInner('<button type="button" aria-expanded="false" aria-controls="showHide-' + index + '"></button>');
+		var showHideAriaButton = $('.showHideTitle > button', obj);
 
 		// Add aria attributes to content
-		var showHideContent = $('.showHideContent', obj);
 		showHideContent.attr({
 			'id':			'showHide-' + index,
 			'aria-hidden':	true
 		});
-
-		var showHideAriaButton = $('.showHideTitle > button', obj);
 
 		function showElement() {
 			// add class open on showHideAria
@@ -43,7 +40,7 @@ $.fn.showHideAria = function(){
 				if (showHideContent.attr('aria-hidden') == 'true'){
 					showElement();
 				} else {
-					hideElement()
+					hideElement();
 				}
 			});
 		});
