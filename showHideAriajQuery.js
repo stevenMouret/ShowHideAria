@@ -1,6 +1,6 @@
 /**
- * Created by Steven Mouret.
- * Accessible collapsible content with jQuery librairie.
+ * Created by Steven Mouret
+ * Accessible collapsible content with jQuery librairie
  */
 
 $.fn.showHideAria = function(){
